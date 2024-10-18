@@ -5,7 +5,7 @@ package laboratorio05;
 public class Soldado {
     private String nombre;
     private int fila;
-    private String columna;
+    private int columna;
     private int nivelDeVida;
 
     // Métodos mutadores
@@ -15,7 +15,7 @@ public class Soldado {
     public void setFila(int f) { 
         fila = f; 
     }
-    public void setColumna(String c) { 
+    public void setColumna(int c) { 
         columna = c; 
     }
     public void setNivelDeVida(int f) { 
@@ -29,7 +29,7 @@ public class Soldado {
     public int getFila() { 
         return fila; 
     }
-    public String getColumna() {
+    public int getColumna() {
         return columna; 
     }
     public int getNivelDeVida() {
