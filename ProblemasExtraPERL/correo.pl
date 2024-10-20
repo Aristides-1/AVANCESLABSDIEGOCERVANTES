@@ -13,4 +13,8 @@ print "Ingrese el dominio de su correo:\n";
 #Ingreso de dominio
 my $dominio=<STDIN>;
 
+print "Su correo electrónico es:\n";
+print "$user";
+print "@";
+print "$dominio";
 
