@@ -1,0 +1,86 @@
+//Autor: Diego Aristides Cervantes Apaza
+//Problema:Tendrá 2 Ejércitos (utilizar la estructura de datos más adecuada). Inicializar el tablero con n
+//soldados aleatorios entre 1 y 10 para cada Ejército. Cada soldado tendrá un nombre
+//autogenerado: Soldado0X1, Soldado1X1, etc., un valor de puntos de vida autogenerado
+//aleatoriamente [1..5], la fila y columna también autogenerados aleatoriamente (no puede
+//haber 2 soldados en el mismo cuadrado). Se debe mostrar el tablero con todos los soldados
+//creados y sus puntos de vida (usar caracteres como | _ y otros y distinguir los de un ejército
+//de los del otro ejército). Además de los datos del Soldado con mayor vida de cada ejército, el
+//promedio de puntos de vida de todos los soldados creados por ejército, los datos de todos los
+//soldados por ejército en el orden que fueron creados y un ranking de poder de todos los
+//soldados creados por ejército (del que tiene más nivel de vida al que tiene menos) usando 2
+//diferentes algoritmos de ordenamiento. Finalmente, que muestre qué ejército ganará la
+//batalla (indicar la métrica usada para decidir al ganador de la batalla). Hacer el programa
+//iterativo.
+package lab7;
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Scanner;
+
+public class Videojuego04 {
+    public static void main(String[] args) {
+        Random rand = new Random();
+        Scanner scan = new Scanner(System.in);
+        boolean repetitivo=true;
+        String eleccion;
+        
+        //Generación de filas y columnas aleatorias
+        int filas = rand.nextInt(8) + 3; 
+        int columnas = rand.nextInt(8) + 3;  
+        
+        //Bucle iterativo para que el programa se ejecute de nuevo
+        //si el usuario así lo desea
+        while (repetitivo){
+            //Creación de arreglo bidimensional
+            Soldado[][] tablero = new Soldado[filas][columnas];
+
+            //Generación de cantidad de soldados totales
+            int numeroSoldados = rand.nextInt(10) + 1; 
+
+            //Inicializar soldados aleatorios asegurando que no haya duplicados
+            for (int i = 0; i < numeroSoldados; i++) {
+                int fila, columna;
+                do {
+                    fila = rand.nextInt(filas); //Filas aleatorias dentro del rango
+                    columna = rand.nextInt(columnas); //Columnas aleatorias dentro del rango
+                } while (tablero[fila][columna] != null); //Aseguramos que no haya dos soldados en el mismo lugar
+
+                //Creación de nombres de soldados autogenerados
+                String nombre = "Soldado" + i;
+                int nivelDeVida = rand.nextInt(5) + 1; //Nivel de vida aleatorio
+                Soldado soldado = new Soldado();
+                soldado.setNombre(nombre);
+                soldado.setFila(fila);
+                soldado.setColumna(columna);
+                soldado.setNivelDeVida(nivelDeVida);
+                tablero[fila][columna] = soldado; //Meter un soldado generado al tablero
+            }
+
+            //Impresión de tablero
+            System.out.println("Tablero:");
+            mostrarTablero(tablero);
+
+            //Impresión de soldado con más vida
+            Soldado soldadoMayorVida = soldadoConMasNivelDeVida(tablero);
+            System.out.println("\nSoldado con mayor nivel de vida:");
+            System.out.println(soldadoMayorVida.getNombre() + " - Nivel de vida: " + soldadoMayorVida.getNivelDeVida());
+
+            //Impresión del nivel promedio de vida de los soldados
+            double promedioNivelDeVida = promedioNivelDeVida(tablero);
+            System.out.println("Promedio de nivel de vida: " + promedioNivelDeVida);
+
+            //Impresión vida total
+            int nivelDeVidaTotal = nivelDeVidaTotal(tablero);
+            System.out.println("Nivel de vida total del ejército: " + nivelDeVidaTotal);
+
+            //Impresión de los soldados en el orden que fueron creados
+            System.out.println("\nSoldados en el orden que fueron creados:");
+            mostrarSoldadosEnOrden(tablero);
+        
+        
+            System.out.println("¿Desea usted volver a ejecutar el juego de ejércitos?, s/n );
+            eleccion=scan.nextLine();
+            if (eleccion==n)
+        }   
+    }  
+}
